@@ -25,4 +25,4 @@ var options = [
     }
 ];
 
-module.exports = friends;
+module.exports = options;
