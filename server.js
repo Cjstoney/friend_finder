@@ -10,4 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/VRDisplayEvent.api+json"}));
 
+app.use(express.statis("app/public"));
+
+require("routing/apiRoutes.js")(app);
+require("routing/htmlRoutes.js")(app);
+
 app.listen(port, () => console.log("Listening on port %s", port));
