@@ -15,11 +15,11 @@
     <form>
         <div class="form-group">
             <label for="userName">Your Name</label>
-            <input type="email" class="form-control" id="nameInput" placeholder="Enter your name">
+            <input class="form-control" id="nameInput" placeholder="Enter your name">
         </div>
         <div class="form-group">
             <label for="imageInput">Image of you</label>
-            <input type="password" class="form-control" id="imageInput" placeholder="link address here">
+            <input class="form-control" id="imageInput" placeholder="link address here">
         </div>
         <div class="form-group form-check">
 
@@ -54,7 +54,8 @@
 
             <!-- question three -->
             <h3><strong>Question Three</strong></h3>
-            <h4 class="survey-question" id="quesThree">Loyalty is the most important quality in a significant other?</h4>
+            <h4 class="survey-question" id="quesThree">Loyalty is the most important quality in a significant other?
+            </h4>
             <select class="chosen-select" id="q3">
                 <option value=""></option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -166,6 +167,72 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <div id="resultsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h2 class="modal-title"><strong>Best Match</strong></h2>
+                </div>
+
+                <div class="modal-body">
+                    <h2 id="matchName"></h2>
+                    <img id="matchImg" src="https://via.placeholder.com/400x400"
+                        alt="Placeholder image in case the picture doesn't show" />
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("#submit").preventDefault();
+        $("#submit").on("cllick", function () {
+            function validateForm() {
+                var isValid = true;
+                $(".form-control").each(function () {
+                    if ($(this).val() === "") isvalid = false;
+                });
+                $(".chosen-select").each(function () {
+                    if ($(this).val() === "") isvalid = false;
+                });
+                return isValid
+            }
+            if (validateForm() === true) {
+                var userData = {
+                    name: $("#nameInput").val(),
+                    photo: $("imageInput").val(),
+                    scores: $("#q1").val(),
+                    scores: $("#q2").val(),
+                    scores: $("#q3").val(),
+                    scores: $("#q4").val(),
+                    scores: $("#q5").val(),
+                    scores: $("#q6").val(),
+                    scores: $("#q7").val(),
+                    scores: $("#q8").val(),
+                    scores: $("#q9").val(),
+                    scores: $("#q10").val(),
+                };
+                var currentUrl = window.location.origin;
+
+                $.post(currentUrl + "/api/friends", userData, function (data) {
+                    $("#matchName").text(data.name);
+                    $("#matchImg").attr("src", data.photo);
+                    $("#resultsModal").modal("toggle");
+                })
+            } else {
+                alert("plese fill out the form");
+            }
+        })
+    </script>
 
 </body>
 
