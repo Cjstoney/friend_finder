@@ -23,4 +23,6 @@ var options = [
         name: "Dwight Schrute",
         scores:[3,3,3,3,3,3,3,3,3,3]
     }
-]
+];
+
+module.exports = friends;
