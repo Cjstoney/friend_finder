@@ -1,18 +1,21 @@
 var express = require("express");
-var bodyParser = require("body-parser");
 var path = require("path");
 
 var app = express();
-var port = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.text());
-app.use(bodyParser.json({type: "application/VRDisplayEvent.api+json"}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 
-app.use(express.static("app/public"));
+require("./routing/apiRoutes.js")(app);
+require("./routing/htmlRoutes.js")(app);
 
-// require("routing/apiRoutes.js")(app);
-// require("routing/htmlRoutes.js")(app);
+// =======================================================================
+// app.get("/", function(req,res){
+//     res.sendFile(path.join(__dirname, "/public/home.html"))
+// });   
+// app.get("/survey", function(req,res){
+//     res.sendFile(path.join(__dirname, "/public/survey.html"))
+// });   
 
-app.listen(port, () => console.log("Listening on port %s", port));
+app.listen(PORT, () => console.log("Listening on port %s", PORT));
