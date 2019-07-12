@@ -27,23 +27,23 @@ module.exports = function(app){
         console.log("Name: "+ userName);
         console.log("User score "+ userScores);
 
-        var sum = b.recuce((a,b)=> a + b, 0);
+        var sum = b.reduce((a,b)=> a + b, 0);
         console.log("Sum of users score "+ sum);
         console.log("Best match friend diff "+bestMatch.friendDifference);
         console.log("++++++++++++===========================================");
 
         for (let index = 0; index < options.length; index++) {
-                console.log(options[i].name);
+                console.log(options[index].name);
                 totalDifference = 0;
                 console.log("Total Diff "+ totalDifference);
                 console.log("Best match friend diff " + bestMatch.FriendDifference);
 
-                var bfriendScore = options[i].scores.reduce((a,b)=> a + b, 0);
+                var bfriendScore = options[index].scores.reduce((a,b)=> a + b, 0);
                 console.log("totlal friend score " +bfriendScore);
                 console.log("-----------------------------> " + totalDifference);
 
                 if(totalDifference <= bestMatch.friendDifference){
-                    bestMatch.name = options[i].name;
+                    bestMatch.name = options[index].name;
                     bestMatch.friendDifference = totalDifference;
                 }
                 console.log(totalDifference+ " Total Difference")
