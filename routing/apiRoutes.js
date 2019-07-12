@@ -49,7 +49,6 @@ for (let index = 0; index < options.length; index++) {
     console.log("the diffence in scores is: "+difference(sum, sumFriend));
                 totalDifference = difference(sum, sumFriend);
                                 
-
                 if(totalDifference <= bestMatch.friendDifference){
                     bestMatch.name = options[index].name;
                     bestMatch.friendDifference = totalDifference;
