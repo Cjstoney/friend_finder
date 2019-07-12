@@ -22,6 +22,10 @@ var options = [
     {
         name: "Dwight Schrute",
         scores:[3,3,3,3,3,3,3,3,3,3]
+    },
+    {
+        name: "cam",
+        scores:[3,3,3,3,3,5,3,6,4,2]
     }
 ];
 
