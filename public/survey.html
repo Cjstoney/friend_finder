@@ -213,23 +213,23 @@
                 return isValid
             }
             if (validateForm() === true) {
+
                 var userData = {
                     name: $("#nameInput").val(),
                     photo: $("imageInput").val(),
-                    scores: $("#q1").val(),
-                    scores: $("#q2").val(),
-                    scores: $("#q3").val(),
-                    scores: $("#q4").val(),
-                    scores: $("#q5").val(),
-                    scores: $("#q6").val(),
-                    scores: $("#q7").val(),
-                    scores: $("#q8").val(),
-                    scores: $("#q9").val(),
-                    scores: $("#q10").val(),
+                    scores: [$("#q1").val(),
+                    $("#q2").val(),
+                    $("#q3").val(),
+                     $("#q4").val(),
+                     $("#q5").val(),
+                     $("#q6").val(),
+                     $("#q7").val(),
+                     $("#q8").val(),
+                     $("#q9").val(),
+                     $("#q10").val()]
                 };
-                var currentUrl = window.location.origin;
 
-                $.post(currentUrl + "/api/friends", userData, function (data) {
+                $.post("/api/friends", userData, function (data) {
                     $("#matchName").text(data.name);
                     $("#matchImg").attr("src", data.photo);
                     $("#resultsModal").modal("toggle");
