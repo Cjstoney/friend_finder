@@ -24,23 +24,31 @@ module.exports = function(app){
             score: b
         };
 
-        console.log("Name: "+ userName);
-        console.log("User score "+ userScores);
+var difference = function (a,b){
+    return Math.abs(a-b);
+}
 
-        var sum = b.reduce((a,b)=> a + b, 0);
-        console.log("Sum of users score "+ sum);
-        console.log("Best match friend diff "+bestMatch.friendDifference);
-        console.log("++++++++++++===========================================");
+console.log("Name: "+ userName);
+console.log("User score "+ userScores);
 
-        for (let index = 0; index < options.length; index++) {
-                console.log(options[index].name);
-                totalDifference = 0;
-                console.log("Total Diff "+ totalDifference);
-                console.log("Best match friend diff " + bestMatch.FriendDifference);
+var sum = b.reduce((a,b)=> a + b, 0);
+console.log("Sum of users score "+ sum);
+console.log("Best match friend diff "+bestMatch.friendDifference);
+console.log("++++++++++++===========================================");
 
-                var bfriendScore = options[index].scores.reduce((a,b)=> a + b, 0);
-                console.log("totlal friend score " +bfriendScore);
-                console.log("-----------------------------> " + totalDifference);
+
+for (let index = 0; index < options.length; index++) {
+    console.log(options[index].name);
+
+    var friendsScore = options[index].scores;
+    var sumFriend = friendsScore.reduce(function(acc,val){
+        return acc + val;
+    },0);
+    console.log(sumFriend);
+    console.log("is this Nan? " +sumFriend)
+    console.log("the diffence in scores is: "+difference(sum, sumFriend));
+                totalDifference = difference(sum, sumFriend);
+                                
 
                 if(totalDifference <= bestMatch.friendDifference){
                     bestMatch.name = options[index].name;
